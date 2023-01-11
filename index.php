@@ -9,14 +9,27 @@
 </head>
 
 <body>
-
+    <?php
+    if (isset($_GET['gen'])) {
+        $len = $_GET['passGen'];
+        $result = '';
+        $ValidChar = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789()-_=+!@#$%^&*[]{}<>?,./';
+        while (0 < $len--) {
+            $result .= $ValidChar[random_int(0, strlen($ValidChar) - 1)];
+        }
+    }
+    ?>
     <!-- #### Milestone 1
-Creare un `form` che invii in `GET` la lunghezza della password. Una nostra funzione utilizzerà *questo dato* per generare una **password casuale** da restituire all’utente. La **password** dovra' essere composta da *lettere minuscole e maiuscole, numeri e simboli*
-Scriviamo tutto (logica e layout) in un unico file `index.php`. -->
-    <form method="post">
-        <label for="password">Password</label>
-        <input type="text" name="password">
-        <input type="submit" value="Generate">
+    Creare un `form` che invii in `GET` la lunghezza della password. Una nostra funzione utilizzerà *questo dato* per generare una **password casuale** da restituire all’utente. La **password** dovra' essere composta da *lettere minuscole e maiuscole, numeri e simboli*
+    Scriviamo tutto (logica e layout) in un unico file `index.php`. -->
+
+    <h1>
+        <?php echo (@$result); ?>
+    </h1>
+    <form method="get">
+        <label for="password">Lunghezza password</label>
+        <input type="number" name="passGen" id="passGen">
+        <input type="submit" value="Generate" name="gen">
     </form>
 </body>
 
